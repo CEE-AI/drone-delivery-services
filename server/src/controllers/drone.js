@@ -6,7 +6,7 @@ import medDB from './medication.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const dataFilePath = path.join(__dirname, '..', 'data', 'drones.js')
+const dataFilePath = path.join(__dirname, '..', 'data', 'drones.json')
 
 // Load drone data from drones.json when server starts
 const loadDataFromFile = () =>{
@@ -61,7 +61,7 @@ export const load = async (req, res) => {
         const {droneId} = req.params
         const {medIds} = req.body
         //Find drone serial number
-        const drone = await droneDB.find((d) => d.serialNumber === serialNumber)
+        const drone = await droneDB.find((d) => d.serialNumber === droneId)
         if(!drone){
             return res.status(404).json({message: 'Drone not found!'})
         }
@@ -97,4 +97,31 @@ export const load = async (req, res) => {
     }
 };
 
-//
+//Retrieve the loaded medication items from a given drone
+export const loadedMedications = (req, res) =>{
+    try{
+        const { droneId } = req.params;
+
+        //Find the drone by serial number
+        const drone = droneDB.find((d) => d.serialNumber === droneId)
+        if(!drone){
+            return res.status(404).send({ error: "Drone not found!"})
+        }
+
+        //check if the drone has loaded medications
+        if(!drone.loadedMedications || drone.loadedMedications.length===0){
+            return res.status(200).send({message: `No loaded medications for drone ${drone.serialNumber}`})
+        }
+
+        res.send(drone.loadedMedications)
+    }catch(error){
+        return res.status(500).send({message: "server error"})
+    }  
+}
+
+//Retrieve the available drones for loading
+export const availableForLoading = (req, res) => {
+    const availableDrones = droneDB.filter(drone => drone.state === 'IDLE')
+    res.status(200).json(availableDrones);
+};
+

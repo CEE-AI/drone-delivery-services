@@ -1,0 +1,3 @@
+GET http://localhost:3000/drones/loaded-medications/6758899
+Content-Type: application/json
+

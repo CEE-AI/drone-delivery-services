@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
-const dataFilePath = path.join(__dirname, '..', 'data', 'med.json')
+const dataFilePath = path.join(__dirname, '..', 'data', 'meds.json')
 
 const loadDataFromFile = () => {
     try {
