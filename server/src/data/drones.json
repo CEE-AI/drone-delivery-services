@@ -1,23 +1,26 @@
-[{
-        "serialNumber": "657349994",
-        "model": "Middleweight",
-        "weightLimit": 400,
-        "batteryCapacity": 100,
-        "state": "LOADED",
-        "loadMedications": [],
-        "loadedMedications": [{
-            "name": "Tetracycline",
-            "weight": 400,
-            "code": "007",
-            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRui0NLWQDfa1kBE2YdndOK1u8qbV04GazCVg&usqp=CAU"
-        }]
-    },
-    {
-        "serialNumber": "6758899",
-        "model": "Lightweight",
-        "weightLimit": 300,
-        "batteryCapacity": 80,
-        "state": "IDLE",
-        "loadMedications": []
-    }
+[
+  {
+    "serialNumber": "657349994",
+    "model": "Middleweight",
+    "weightLimit": 400,
+    "batteryCapacity": 100,
+    "state": "DELIVERED",
+    "loadMedications": [],
+    "loadedMedications": [
+      {
+        "name": "Tetracycline",
+        "weight": 400,
+        "code": "007",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRui0NLWQDfa1kBE2YdndOK1u8qbV04GazCVg&usqp=CAU"
+      }
+    ]
+  },
+  {
+    "serialNumber": "6758899",
+    "model": "Lightweight",
+    "weightLimit": 300,
+    "batteryCapacity": 80,
+    "state": "IDLE",
+    "loadMedications": []
+  }
 ]

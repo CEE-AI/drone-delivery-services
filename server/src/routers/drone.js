@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import{register, load, loadedMedications, availableForLoading} from '../controllers/drone.js'
+import{register, load, loadedMedications, availableForLoading, batteryLevel} from '../controllers/drone.js'
 
 const dronesRouter = express.Router();
 dronesRouter.use(bodyParser.json())
@@ -10,5 +10,6 @@ dronesRouter.post('/register', register)
 dronesRouter.post('/load/:droneId', load)
 dronesRouter.get('/loaded-medications/:droneId', loadedMedications)
 dronesRouter.get('/drone-available', availableForLoading)
+dronesRouter.get('/battery-level/:droneId', batteryLevel)
 
 export default dronesRouter;

@@ -75,9 +75,18 @@ export const load = async (req, res) => {
             return acc;
         }, 0);
 
+        // update state
+        drone.state = 'LOADING'
+        saveDataToFile(droneDB, 'drones.json');
+
         //check if the drone can carry the weight of medication
         if(totalWeight > drone.weightLimit) {
             return res.status(400).json({error: `Exceeded weight limit by ${totalWeight-drone.weightLimit}gr`})
+        } 
+        else if (drone.batteryCapacity < 25) {
+            drone.state = 'IDLE';
+            saveDataToFile(droneDB, 'drones.json')
+            return res.status(400).json({ error: `Battery is too low: below ${25}%, please recharge` })
         }
 
         //Load the medication items onto the drone
@@ -88,7 +97,7 @@ export const load = async (req, res) => {
 
         //update the drone state
         drone.state = 'LOADED';
-        saveDataToFile(droneDB, 'drone.json');
+        saveDataToFile(droneDB, 'drones.json');
 
         res.status(200).json({ message: 'Drone loaded', drone })
 
@@ -113,6 +122,9 @@ export const loadedMedications = (req, res) =>{
             return res.status(200).send({message: `No loaded medications for drone ${drone.serialNumber}`})
         }
 
+        drone.state = 'DELIVERED';
+        saveDataToFile(droneDB, 'drones.json')
+
         res.send(drone.loadedMedications)
     }catch(error){
         return res.status(500).send({message: "server error"})
@@ -122,6 +134,27 @@ export const loadedMedications = (req, res) =>{
 //Retrieve the available drones for loading
 export const availableForLoading = (req, res) => {
     const availableDrones = droneDB.filter(drone => drone.state === 'IDLE')
+    if(!availableDrones) {
+        res.status(400).send({message: "drones unavailable for loading"})
+    }
     res.status(200).json(availableDrones);
 };
+
+//Retrieve battery for a given drone
+export const batteryLevel = (req, res) => {
+    const { droneId } = req.params;
+    //find drone by serial number
+    const drone = droneDB.find((drone) => drone.serialNumber === droneId)
+
+    if(!drone) {
+        return res.status(404).send({ error: 'Drone not found!' })
+    }
+
+    if(drone.batteryCapacity < 25) {
+        drone.state = 'IDLE';
+        saveDataToFile(droneDB, 'drones.json')
+    }
+
+    res.json({ batteryLevel: drone.batteryCapacity })
+}
 

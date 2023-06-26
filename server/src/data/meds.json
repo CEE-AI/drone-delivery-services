@@ -1,6 +1,14 @@
-[{
+[
+  {
     "name": "Tetracycline",
     "weight": 400,
     "code": "007",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRui0NLWQDfa1kBE2YdndOK1u8qbV04GazCVg&usqp=CAU"
-}]
+  },
+  {
+    "name": "Paracetamol",
+    "weight": 550,
+    "code": "012",
+    "image": "https://cdn11.bigcommerce.com/s-1ckji0j190/images/stencil/1280x1280/products/2099/4555/PARACETAMOL_325_MG_SOFTGELS_CAJA__67161.1652732274.jpg?c=1&imbypass=on"
+  }
+]
