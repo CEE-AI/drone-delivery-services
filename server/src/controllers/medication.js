@@ -36,6 +36,10 @@ export const createMed = async(req, res) => {
             code,
             image
         };
+        const existingMed = await medDB.find((m) => m.code === code)
+        if (existingMed) {
+            return res.status(400).send({ message: "Medication item already registered" })
+        }
 
         medDB.push(med)
         saveDataToFile(medDB)
