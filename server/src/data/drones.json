@@ -1,72 +1,91 @@
-[
-  {
-    "serialNumber": "657349994",
-    "model": "Middleweight",
-    "weightLimit": 400,
-    "batteryCapacity": 100,
-    "state": "DELIVERED",
-    "loadMedications": [
-      {
-        "name": "Tetracycline",
-        "weight": 400,
-        "code": "007",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRui0NLWQDfa1kBE2YdndOK1u8qbV04GazCVg&usqp=CAU"
-      }
-    ]
-  },
-  {
-    "serialNumber": "6758899",
-    "model": "Lightweight",
-    "weightLimit": 300,
-    "batteryCapacity": 80,
-    "state": "LOADING",
-    "loadMedications": []
-  },
-  {
-    "serialNumber": "DRN4723",
-    "model": "Heavyweight",
-    "weightLimit": 500,
-    "batteryCapacity": 89,
-    "state": "DELIVERING",
-    "loadMedications": [
-      {
-        "name": "Tetracycline",
-        "weight": 400,
-        "code": "007",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRui0NLWQDfa1kBE2YdndOK1u8qbV04GazCVg&usqp=CAU"
-      }
-    ]
-  },
-  {
-    "serialNumber": "DRN2371",
-    "model": "Lightweight",
-    "weightLimit": 250,
-    "batteryCapacity": 23,
-    "state": "IDLE",
-    "loadMedications": []
-  },
-  {
-    "serialNumber": "DRN6618",
-    "model": "Cruiserweight",
-    "weightLimit": 350,
-    "batteryCapacity": 48,
-    "state": "IDLE",
-    "loadMedications": []
-  },
-  {
-    "serialNumber": "LGT3447",
-    "model": "Lightweight",
-    "weightLimit": 200,
-    "batteryCapacity": 82,
-    "state": "LOADING",
-    "loadMedications": []
-  },
-  {
-    "serialNumber": "MDW4669",
-    "model": "Middleweight",
-    "weightLimit": 312,
-    "batteryCapacity": 100,
-    "state": "IDLE",
-    "loadMedications": []
-  }
+[{
+        "serialNumber": "657349994",
+        "model": "Middleweight",
+        "weightLimit": 400,
+        "batteryCapacity": 100,
+        "state": "DELIVERED",
+        "loadMedications": [{
+            "name": "Tetracycline",
+            "weight": 400,
+            "code": "007",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRui0NLWQDfa1kBE2YdndOK1u8qbV04GazCVg&usqp=CAU"
+        }]
+    },
+    {
+        "serialNumber": "6758899",
+        "model": "Lightweight",
+        "weightLimit": 300,
+        "batteryCapacity": 80,
+        "state": "LOADING",
+        "loadMedications": []
+    },
+    {
+        "serialNumber": "DRN4723",
+        "model": "Heavyweight",
+        "weightLimit": 500,
+        "batteryCapacity": 89,
+        "state": "DELIVERING",
+        "loadMedications": [{
+            "name": "Tetracycline",
+            "weight": 400,
+            "code": "007",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRui0NLWQDfa1kBE2YdndOK1u8qbV04GazCVg&usqp=CAU"
+        }]
+    },
+    {
+        "serialNumber": "DRN2371",
+        "model": "Lightweight",
+        "weightLimit": 250,
+        "batteryCapacity": 23,
+        "state": "IDLE",
+        "loadMedications": []
+    },
+    {
+        "serialNumber": "DRN6618",
+        "model": "Cruiserweight",
+        "weightLimit": 350,
+        "batteryCapacity": 48,
+        "state": "IDLE",
+        "loadMedications": []
+    },
+    {
+        "serialNumber": "LGT3447",
+        "model": "Lightweight",
+        "weightLimit": 200,
+        "batteryCapacity": 82,
+        "state": "LOADING",
+        "loadMedications": []
+    },
+    {
+        "serialNumber": "MDW4669",
+        "model": "Middleweight",
+        "weightLimit": 312,
+        "batteryCapacity": 100,
+        "state": "IDLE",
+        "loadMedications": []
+    },
+    {
+        "serialNumber": "MDW5623",
+        "model": "Middleweight",
+        "weightLimit": 322,
+        "batteryCapacity": 12,
+        "state": "LOADING",
+        "loadMedications": []
+    },
+    {
+        "serialNumber": "DRN8442",
+        "model": "Heavyweight",
+        "weightLimit": 492,
+        "batteryCapacity": 88,
+        "state": "LOADING",
+        "loadMedications": []
+    },
+    {
+        "serialNumber": "DRN6487",
+        "model": "Cruiserweight",
+        "weightLimit": 278,
+        "batteryCapacity": 37,
+        "state": "LOADING",
+        "loadMedications": []
+    }
 ]

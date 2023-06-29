@@ -37,13 +37,23 @@ export const register = async (req, res) => {
             model,
             weightLimit,
             batteryCapacity,
-            state: 'IDLE',
+            state: 'LOADING',
             loadMedications: []
         };
 
         const existingDrone = await droneDB.find((d) => d.serialNumber === serialNumber)
         if(existingDrone){
             return res.status(400).send({message: "Drone already registered"})
+        }
+        
+        const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+        if (!alphanumericRegex.test(serialNumber)) {
+            return res.status(400).json({ error: 'Input should only contain alphanumeric characters.' });
+        }
+
+        // Check if input length exceeds 100 characters
+        if (serialNumber.length > 100) {
+            return res.status(400).json({ error: 'Input should be a maximum of 100 characters.' });
         }
 
         droneDB.push(drone)
@@ -75,10 +85,6 @@ export const load = async (req, res) => {
             }
             return acc;
         }, 0);
-
-        // update state
-        drone.state = 'LOADING'
-        saveDataToFile(droneDB, 'drones.json');
 
         //check if the drone can carry the weight of medication
         if(totalWeight > drone.weightLimit) {
@@ -139,7 +145,7 @@ export const loadedMedications = (req, res) =>{
 
 //Retrieve the available drones for loading
 export const availableForLoading = (req, res) => {
-    const availableDrones = droneDB.filter(drone => drone.state === 'IDLE')
+    const availableDrones = droneDB.filter(drone => drone.state === 'LOADING')
     if(!availableDrones) {
         res.status(400).send({message: "drones unavailable for loading"})
     }
@@ -181,6 +187,7 @@ export const batteryLog = (req, res) => {
         const batteryLog = droneDB.map((drone) => {
             return {
                 serialNumber: drone.serialNumber,
+                model: drone.model,
                 batteryCapacity: drone.batteryCapacity,
             };
         });
