@@ -29,7 +29,7 @@ const droneDB = loadDataFromFile();
 export const register = async (req, res) => {
     try{
         const{ serialNumber, model, weightLimit, batteryCapacity} = req.body
-        if (!serialNumber||!model||!weightLimit||!batteryCapacity){
+        if (!serialNumber||!weightLimit||!batteryCapacity){
             return res.status(400).send({message: 'Please fill all fields', error})
         }
         const drone = {
@@ -60,6 +60,7 @@ export const load = async (req, res) => {
     try{
         const {droneId} = req.params
         const {medIds} = req.body
+
         //Find drone serial number
         const drone = await droneDB.find((d) => d.serialNumber === droneId)
         if(!drone){
@@ -86,11 +87,11 @@ export const load = async (req, res) => {
         else if (drone.batteryCapacity < 25) {
             drone.state = 'IDLE';
             saveDataToFile(droneDB, 'drones.json')
-            return res.status(400).json({ error: `Battery is too low: below ${25}%, please recharge` })
+            return res.status(404).json({ error: `Battery is too low: below ${25}%, please recharge` })
         }
 
         //Load the medication items onto the drone
-        drone.loadedMedications = medIds.map((medId) => {
+        drone.loadMedications = medIds.map((medId) => {
             const med = medDB.find((med) => med.code === medId)
             return med ? med : null
         })
@@ -118,14 +119,19 @@ export const loadedMedications = (req, res) =>{
         }
 
         //check if the drone has loaded medications
-        if(!drone.loadedMedications || drone.loadedMedications.length===0){
+        if(!drone.loadMedications || drone.loadMedications.length===0){
             return res.status(200).send({message: `No loaded medications for drone ${drone.serialNumber}`})
         }
 
-        drone.state = 'DELIVERED';
-        saveDataToFile(droneDB, 'drones.json')
+        //check if the drone is in delivering state
+        if(drone.state==='DELIVERING') {
+            
+            delete drone.loadMedications;
+            drone.state = 'DELIVERED';
+            saveDataToFile(droneDB, 'drones.json')
+        }
 
-        res.send(drone.loadedMedications)
+        res.send(drone)
     }catch(error){
         return res.status(500).send({message: "server error"})
     }  
@@ -150,11 +156,39 @@ export const batteryLevel = (req, res) => {
         return res.status(404).send({ error: 'Drone not found!' })
     }
 
-    if(drone.batteryCapacity < 25) {
+    if (drone.state === 'DELIVERED' && drone.loadMedications === undefined) {
+        drone.loadMedications = []
+        saveDataToFile(droneDB, 'drones.json')
+    }
+    
+    if (drone.batteryCapacity < 25) {
         drone.state = 'IDLE';
+        saveDataToFile(droneDB, 'drones.json')
+    }else if(drone.batteryCapacity > 25 && drone.loadMedications.length!==0){
+        drone.state = 'DELIVERING'
+        saveDataToFile(droneDB, 'drones.json')
+    } else{
+        drone.state = 'LOADING';
         saveDataToFile(droneDB, 'drones.json')
     }
 
     res.json({ batteryLevel: drone.batteryCapacity })
 }
+
+export const batteryLog = (req, res) => {
+    try {
+
+        const batteryLog = droneDB.map((drone) => {
+            return {
+                serialNumber: drone.serialNumber,
+                batteryCapacity: drone.batteryCapacity,
+            };
+        });
+
+        res.json(batteryLog);
+    } catch (error) {
+        console.error('Error fetching battery log:', error);
+        res.status(500).json({ error: 'Failed to fetch battery log' });
+    }
+};
 

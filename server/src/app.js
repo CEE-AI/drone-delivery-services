@@ -12,14 +12,16 @@ const port = process.env.PORT
 
 //middleware
 app.use(cors())
-
 app.use(bodyParser.json())
+
+
 
 // router
 app.use('/', router())
 app.use('/drones', dronesRouter)
+
 // start server
-app.listen(port,() => console.log(`server currently running on port ${port}`))
+app.listen(port, () => console.log(`server currently running on port ${port}`))
 
 // check server
 app.get('/', (req, res) => res.send(`Drone Service is Live`))

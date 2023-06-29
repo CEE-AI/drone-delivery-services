@@ -1,26 +1,26 @@
 <div class="container-fluid container mt-3">
-    <h2>Register a Drone</h2>
-    <form id="registerDroneForm">
+    <h2 class="page-header">Register a Drone</h2>
+    <form (submit)="registerDroneForm()">
         <div class="form-group">
-            <label for="serialNumber">Serial Number:</label>
-            <input type="text" id="serialNumber" required>
+            <label for="serialNumber">Serial Number: </label>
+            <input type="text" class="form-control" placeholder="Enter serial number" id="serialNumber" required>
         </div><br>
         <div class="form-group">
-            <label for="model">Model:</label>
+            <label for="model">Model:</label><br>
             <select id="model" required>
-                    <option value="Lightweight">Lightweight</option>
-                    <option value="Middleweight">Middleweight</option>
-                    <option value="Cruiserweight">Cruiserweight</option>
-                    <option value="Heavyweight">Heavyweight</option>
-                </select>
+                <option value="Lightweight">Lightweight</option>
+                <option value="Middleweight">Middleweight</option>
+                <option value="Cruiserweight">Cruiserweight</option>
+                <option value="Heavyweight">Heavyweight</option>
+            </select>
         </div><br>
         <div class="form-group">
-            <label for="weightLimit">Weight Limit:</label>
-            <input type="number" id="weightLimit" required>
+            <label for="weightLimit">Weight Limit: </label>
+            <input type="number" class="form-control" placeholder="Weight (grams)" id="weightLimit" required>
         </div><br>
         <div class="form-group">
             <label for="batteryCapacity">Battery Capacity:</label>
-            <input type="number" id="batteryCapacity" required>
+            <input type="number" class="form-control" placeholder="Power (%)" id="batteryCapacity" required>
         </div><br>
         <button class="btn btn-primary" type="submit">Register</button>
     </form>

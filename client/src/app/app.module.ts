@@ -17,6 +17,7 @@ import { MedicationComponent } from './components/medication/medication.componen
 import { BatteryLogComponent } from './components/battery-log/battery-log.component';
 
 import { ValidationService } from './service/validation.service';
+import { DroneComponent } from './components/drone/drone.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ValidationService } from './service/validation.service';
     HomeComponent,
     NavbarComponent,
     MedicationComponent,
-    BatteryLogComponent
+    BatteryLogComponent,
+    DroneComponent
   ],
   imports: [
     BrowserModule,

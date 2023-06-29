@@ -1,1 +1,31 @@
-<p>home works!</p>
+<div class="container-fluid container">
+    <h2 class="page-header">Musala-Soft Drone Services</h2>
+    <h6>Load Medication Items</h6>
+    <form id="loadMedicationsForm">
+        <div class="form-group">
+            <label for="droneId">Drone ID:</label>
+            <input type="text" class="form-control" placeholder="Enter serial number" id="droneId" required><br>
+        </div>
+        <div class="form-group">
+            <label for="medicationIds">Medication IDs (comma-separated):</label>
+            <input type="text" class="form-control" placeholder="Enter code" id="medicationIds" required><br>
+        </div>
+        <div class="form-group mb-3">
+            <button class="btn btn-primary" type="submit">Load Medications</button>
+        </div>
+    </form>
+
+    <h6>Loaded Medications for Drone</h6>
+    <div id="loadedMedications"></div>
+
+    <h6>Available Drones for Loading</h6>
+    <div id="availableDrones"></div>
+
+    <h6>Battery Level for Drone</h6>
+    <form id="batteryLevelForm">
+        <div class="form-group">
+            <label for="droneIdForBattery">Drone ID:</label>
+            <input type="text" class="form-control" placeholder="Enter serial number" id="droneIdForBattery" required><br>
+            <button class="btn btn-primary" type="submit">Get Battery Level</button>
+        </div>
+    </form>
