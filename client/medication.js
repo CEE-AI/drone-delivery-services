@@ -9,18 +9,13 @@ document.getElementById('uploadForm').addEventListener('submit', (event) => {
     const imageInput = document.getElementById('image');
     const image = imageInput.files[0];
 
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('weight', weight);
-    formData.append('code', code);
-    formData.append('image', image);
 
     fetch(API + "meds", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({name, weight, code, image})
     })
         .then(response => response.json()) // Parse the response as JSON
         .then(data => {

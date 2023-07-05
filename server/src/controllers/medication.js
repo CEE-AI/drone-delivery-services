@@ -1,4 +1,4 @@
-import multer from 'multer';
+// import multer from 'multer';
 import fs from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -24,16 +24,16 @@ const saveDataToFile = (data) => {
 
 const medDB = loadDataFromFile();
 
-const storage = multer.diskStorage({
-    destination: './assets/images',
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-        const fileName = file.originalname.replace(/[^a-zA-Z0-9]/g, '') + '-' + uniqueSuffix;
-        cb(null, fileName);
-    },
-});
+// const storage = multer.diskStorage({
+//     destination: './assets/images',
+//     filename: (req, file, cb) => {
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+//         const fileName = file.originalname.replace(/[^a-zA-Z0-9]/g, '') + '-' + uniqueSuffix;
+//         cb(null, fileName);
+//     },
+// });
 
-const upload = multer({ storage });
+// const upload = multer({ storage });
 
 // Create medication products
 export const createMed = async (req, res) => {
@@ -52,7 +52,7 @@ export const createMed = async (req, res) => {
 
         const image = req.file; // Get the uploaded image file
 
-        console.log('Received image:', image);
+        console.log('Received image:', image.filename);
 
         if (!image) {
             console.log('No image uploaded');

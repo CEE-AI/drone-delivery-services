@@ -45,7 +45,7 @@
 
         <div class="row justify-content-center">
             <div class="col-lg-6">
-                <form id="uploadForm">
+                <form id="uploadForm" action="/server/assets/images/" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" placeholder=" Enter name" required>
@@ -60,7 +60,7 @@
                     </div>
                     <div class="mb-3" id="imagePath">
                         <label for="image" class="form-label">Image</label>
-                        <input type="file" class="form-control" id="image" name="image" accept="image/*" required>
+                        <input type="file" class="form-control" id="image" name="amaterm" accept="image/*" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Create Medication</button>
                 </form>
